@@ -10,6 +10,7 @@
 支持发布话题的时候选择一个版权 
 
 ### 相关连接
-[Vanillaforums](http://vanillaforums.org)
-[Vanillaforums Addon](http://vanillaforums.org/addons)
-[插件讨论帖](http://www.sbbok.com/discussion/15/) [http://www.sbbok.com/discussion/15/](http://www.sbbok.com/discussion/15/)
+* [Vanillaforums](http://vanillaforums.org) 
+* [Vanillaforums Addon](http://vanillaforums.org/addons) 
+* [插件讨论帖](http://www.sbbok.com/discussion/15/)  
+* [http://www.sbbok.com/discussion/15/](http://www.sbbok.com/discussion/15/)
