@@ -7,13 +7,14 @@ $PluginInfo['PostUrl'] = array(
 	'AuthorUrl' => 'http://github.com/xjtdy888',
     'Name' => 'PostUrl',
     'Description' => '添加版权展示信息',
-    'Version' => '1.0',
+    'Version' => '1.1',
     'MobileFriendly' => TRUE,
     'RequiredApplications' => array('Vanilla' => '2.2'),
     'RequiredTheme' => FALSE,
     'RequiredPlugins' => FALSE,
     'SettingsUrl' => '/settings/PostUrl',
-   'SettingsPermission' => 'Garden.Settings.Manage'
+   'SettingsPermission' => 'Garden.Settings.Manage',
+    'RegisterPermissions' => array( 'Plugins.PostUrl.Allow' => 'Plugins.PostUrl.Allow')
 );
 
 class PostUrlPlugin extends Gdn_Plugin {
@@ -31,7 +32,7 @@ class PostUrlPlugin extends Gdn_Plugin {
         $PM = new PermissionModel();
 
         $PM->define(array(
-            'Plugins.PostUrl.Attach' => 'Plugins.PostUrl.Attach'
+            'Plugins.PostUrl.Allow' => 'Plugins.PostUrl.Allow'
         ));
 
         $Structure = Gdn::structure();
@@ -59,7 +60,7 @@ class PostUrlPlugin extends Gdn_Plugin {
         } 
 
     	$placeHolders = array(
-        	'%site_url%' => c('Garden.Domain'),
+        	'%site_url%' => url('/'),
         	'%site_name%' => c('Garden.Title'),
         	'%post_url%' => getValueR("Discussion.Url", $args),
         	'%post_title%' => getValueR("Discussion.Name", $args),
@@ -126,6 +127,9 @@ class PostUrlPlugin extends Gdn_Plugin {
         if (c('Plugins.PostUrl.Disable', false)) {
             return;
         }
+         if (!Gdn::session()->checkPermission('Plugins.PostUrl.Allow')) {
+             return ;
+         }
         //Gdn::session()->checkPermission('Plugins.PostUrl.Attach')
         if (in_array($Sender->RequestMethod, array('discussion', 'editdiscussion', 'question'))) {
             $DiscussionID = property_exists($Sender, 'DiscussionID') ? $Sender->DiscussionID : 0;
@@ -158,6 +162,9 @@ class PostUrlPlugin extends Gdn_Plugin {
         if (c('Plugins.PostUrl.Disable', false)) {
             return;
         }
+         if (!Gdn::session()->checkPermission('Plugins.PostUrl.Allow')) {
+             return ;
+         }
         $FormPostValues = val('FormPostValues', $Sender->EventArguments, array());
         $PostUrlValue = val('PostUrlValue', $FormPostValues, 0);
 
