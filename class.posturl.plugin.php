@@ -188,8 +188,7 @@ class PostUrlPlugin extends Gdn_Plugin {
                             'DateInserted' => date('Y-m-d H:i:s'))
             );
         }else{
-            $row->PostUrlValue = $PostUrlValue;
-            $SQL->update("PostUrl", $row)->put();
+            $SQL->update("PostUrl", array("PostUrlValue"=>$PostUrlValue), array("DiscussionID"=>$DiscussionID))->put();
         }
 
     }
