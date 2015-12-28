@@ -7,7 +7,7 @@ $PluginInfo['PostUrl'] = array(
 	'AuthorUrl' => 'http://github.com/xjtdy888',
     'Name' => 'PostUrl',
     'Description' => '添加版权展示信息',
-    'Version' => '1.1',
+    'Version' => '1.2',
     'MobileFriendly' => TRUE,
     'RequiredApplications' => array('Vanilla' => '2.2'),
     'RequiredTheme' => FALSE,
@@ -158,6 +158,7 @@ class PostUrlPlugin extends Gdn_Plugin {
         }
      }
 
+
      public function discussionModel_afterSaveDiscussion_handler($Sender) {
         if (c('Plugins.PostUrl.Disable', false)) {
             return;
@@ -202,9 +203,9 @@ class PostUrlPlugin extends Gdn_Plugin {
         if (c('Plugins.PostUrl.Disable', false)) {
             return;
         }
+
         // Get discussionID that is being deleted
         $DiscussionID = $Sender->EventArguments['DiscussionID'];
-        $SQL = Gdn::sql();
-        $SQL->delete("PostUrl", array("DiscussionID", $DiscussionID));
+        $Sender->SQL->where('DiscussionID', $DiscussionID)->delete('PostUrl');
     }
 }
