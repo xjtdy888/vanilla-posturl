@@ -6,7 +6,7 @@ $PluginInfo['PostUrl'] = array(
 	'Author' => 'xjtdy888',
 	'AuthorUrl' => 'http://github.com/xjtdy888',
     'Name' => 'PostUrl',
-    'Description' => '添加版权展示信息',
+    'Description' => '添加版权展示信息 test',
     'Version' => '1.3.0',
     'MobileFriendly' => TRUE,
     'RequiredApplications' => array('Vanilla' => '2.2'),
